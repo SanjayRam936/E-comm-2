@@ -7,6 +7,12 @@ import { toast } from "@/components/ui/sonner";
 import { generateWithGemini, type ChatMessage } from "@/lib/ai_gemini";
 import { Send, Bot, User } from "lucide-react";
 
+const SYSTEM_PROMPT = `You are a helpful AI assistant for an AI Automated E‑Commerce Legal Metrology Checker web app.
+- Capabilities: explain OCR results, Legal Metrology rules (India), anomaly detection, barcode enrichment, and CV similarity; guide users through scanning steps.
+- Provide concise, clear answers with action-oriented steps, and link users to features in the app (Scanner, Reports, Compliance).
+- If you don't know, ask clarifying questions; don't fabricate.
+- Avoid legal advice; provide informational guidance and cite rule names when relevant.`;
+
 export default function Chat() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: "assistant", content: "Hi! I’m your Compliance Assistant. Ask me about scanning labels, Legal Metrology rules, anomalies, or CV checks." },
@@ -74,9 +80,3 @@ export default function Chat() {
     </div>
   );
 }
-
-const SYSTEM_PROMPT = `You are a helpful AI assistant for an AI Automated E‑Commerce Legal Metrology Checker web app.
-- Capabilities: explain OCR results, Legal Metrology rules (India), anomaly detection, barcode enrichment, and CV similarity; guide users through scanning steps.
-- Provide concise, clear answers with action-oriented steps, and link users to features in the app (Scanner, Reports, Compliance).
-- If you don’t know, ask clarifying questions; don’t fabricate.
-- Avoid legal advice; provide informational guidance and cite rule names when relevant.`;

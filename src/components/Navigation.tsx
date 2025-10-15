@@ -11,16 +11,24 @@ import {
   Settings,
   Menu,
   User,
-  Bell
+  Bell,
+  ShieldAlert,
+  TrendingUp,
+  ShieldCheck,
+  Bot,
+  MessageSquare
 } from "lucide-react";
 
 const navigationItems = [
-  { name: "Chat", href: "/chat", icon: User },
   { name: "Dashboard", href: "/dashboard", icon: BarChart3 },
   { name: "Scanner", href: "/scanner", icon: ScanLine },
+  { name: "Price Analysis", href: "/price-manipulation", icon: TrendingUp },
+  { name: "Verification", href: "/dual-verification", icon: ShieldCheck },
+  { name: "Anomaly", href: "/anomaly", icon: ShieldAlert },
   { name: "Complaints", href: "/complaints", icon: FileText },
   { name: "Compliance", href: "/compliance", icon: Shield },
   { name: "Reports", href: "/reports", icon: BarChart3 },
+  { name: "Chat", href: "/chat", icon: MessageSquare },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 

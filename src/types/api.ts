@@ -93,3 +93,64 @@ export interface GetScanResultResponse {
   cv?: { similarity?: number; flags?: { key: string; present: boolean }[] };
   summary?: SummaryResult;
 }
+
+// New API endpoints for added features
+
+// /v1/pricing/analyze
+export interface PricingAnalysisRequest {
+  product_id: string;
+  current_price: number;
+  historical_data?: { date: string; price: number; source: string }[];
+}
+
+export interface PricingAnalysisResponse {
+  manipulation_score: number;
+  baseline_price: number;
+  alerts: {
+    type: 'artificial_inflation' | 'suspicious_spike' | 'fake_discount';
+    confidence: number;
+    details: string;
+  }[];
+  seasonal_analysis: {
+    is_festive_period: boolean;
+    expected_range: { min: number; max: number };
+  };
+}
+
+// /v1/verification/request
+export interface VerificationRequest {
+  product_id: string;
+  verification_type: 'pre_purchase' | 'post_delivery' | 'authenticity' | 'batch';
+  requester_type: 'consumer' | 'seller';
+  images?: File[];
+  certificates?: File[];
+  batch_details?: {
+    batch_id: string;
+    quantity: number;
+    manufacturing_date: string;
+  };
+}
+
+export interface VerificationResponse {
+  verification_id: UUID;
+  status: 'pending' | 'in_progress' | 'completed' | 'disputed';
+  estimated_completion: string;
+}
+
+// /v1/chat/message
+export interface ChatMessageRequest {
+  message: string;
+  language: string;
+  context?: {
+    feature?: string;
+    user_type: 'consumer' | 'seller' | 'admin';
+  };
+  session_id?: UUID;
+}
+
+export interface ChatMessageResponse {
+  response: string;
+  session_id: UUID;
+  language: string;
+  quick_actions?: { label: string; action: string }[];
+}

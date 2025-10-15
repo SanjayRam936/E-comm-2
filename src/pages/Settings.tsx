@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +23,13 @@ import {
 } from "lucide-react";
 
 export default function Settings() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="p-4 sm:p-6 max-w-7xl mx-auto space-y-4 sm:space-y-6">
       {/* Header */}
@@ -144,7 +153,13 @@ export default function Settings() {
                     <Label htmlFor="darkMode">Dark Mode</Label>
                     <p className="text-sm text-muted-foreground">Enable dark theme for better viewing</p>
                   </div>
-                  <Switch id="darkMode" />
+                  {mounted && (
+                    <Switch
+                      id="darkMode"
+                      checked={theme === "dark"}
+                      onCheckedChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    />
+                  )}
                 </div>
               </CardContent>
             </Card>
