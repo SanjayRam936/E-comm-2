@@ -13,6 +13,7 @@ import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import Chat from "./pages/Chat";
+import Login from "./pages/login";
 
 const queryClient = new QueryClient();
 
@@ -23,8 +24,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Index />} />
-          <Route path="/" element={<Layout />}>
+          <Route element={<Layout />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="scanner" element={<Scanner />} />
             <Route path="complaints" element={<Complaints />} />
